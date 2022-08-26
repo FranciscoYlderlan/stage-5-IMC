@@ -1,0 +1,206 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    font-size: 62.5%;
+    --hue: 230;
+    --bg-primary-color: hsl(var(--hue), 78%, 8%);
+    --bg-secundary-color: hsl(var(--hue), 0%, 100%);
+    --bg-error-color: hsl(0, 86%, 59%);
+    --cl-heading: hsl(194, 68%, 15%);
+    --cl-label: hsl(170, 100%, 14%);
+    --cl-button: hsla(194, 97%, 31%);
+    
+    --pd-card: 2.4rem;
+    --mg-card: 10rem;
+    --fs-heading:  clamp(2.4rem, calc(1.5rem + ((1vw - .3rem) * 14.5)), 3.2rem);
+    --fs-modal:  clamp(2rem, calc(1rem + ((0.5vw - .1rem) * 7)), 3.2rem);
+    --wd-card: clamp(24rem, calc(15rem + ((1vw - .3rem) * 144)), 42.8rem);
+    --wd-modal: clamp(20rem, calc(15rem + ((1vw - 3.2px) * 94.6)), 36.3rem);;
+    --mg-close: clamp(0.4rem, calc(0.1rem + ((1vw - .3rem) * 7)), 1.6rem);
+
+    --ol-input: 3px hsl(194, 97%, 31%) solid;
+}
+
+body {
+    position: relative;
+    font-size: 1.6rem;
+
+    height: 100vh;
+    background-color: var(--bg-primary-color);
+
+    display: grid;
+    place-content: center;
+    padding: 10vw;
+}
+
+body, input, label, button {
+    font-family: 'Roboto', sans-serif;
+}
+
+.text-error {
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    padding: 8px 0;
+
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.6rem;
+    line-height: 2rem;
+
+    background-color: var(--bg-error-color);
+    color: var(--bg-secundary-color);
+    
+    opacity: 0;
+    transform: translateY(-40px);
+    
+    transition: transform .3s;
+}
+
+
+main {
+    display: grid;
+    gap: 3.2rem;
+
+    
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card {
+   
+
+    background-color: var(--bg-secundary-color);
+    
+    padding: var(--pd-card);
+    margin-inline: auto;
+    width: var(--wd-card);
+    border-radius: 6px;
+}
+
+
+label {
+    display:block;
+    margin-bottom: 8px;
+
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18px;
+
+    color:var(--cl-label);
+}
+input {
+    width: 100%;
+    padding: 1.6rem;
+    background: hsl(212, 23%, 89%);
+    border: 1px solid rgba(73, 80, 87, 0.3);
+    border-radius: 4px;
+
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18px;
+    
+}
+
+input:focus, main button:focus {
+    outline: var(--ol-input);
+}
+
+.outline-error {
+    outline: 3px var(--bg-error-color) solid;
+}
+
+div + div {
+    margin-top: 1.6rem;
+}
+
+main button {
+    border:none;
+    border-radius: 4px;
+    display: flex;
+    place-content: center;
+    gap: 8px;
+    padding: 1.6rem;
+    background-color: var(--cl-button);
+    color: var(--bg-secundary-color);
+
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+    transition: background .3s;
+}
+
+main button:hover {
+    background-color: rgb(6, 98, 129);
+    cursor:pointer;
+}
+
+.wrapper-modal {
+    position: absolute;
+    inset:0;
+    display:grid;
+    place-content: center;
+    background: rgba(0, 0, 0, 0.7);
+
+    opacity: 0;
+    visibility: hidden;
+}
+
+.modal {
+    position: relative;
+    width: var(--wd-modal);
+
+}
+
+.heading {
+    font-weight: 700;
+    font-size: var(--fs-heading);
+    line-height: 4rem;
+    color: var(--cl-heading);
+}
+
+.modal .heading {
+    text-align: center;
+    font-size: var(--fs-modal);
+}
+
+.card.modal img {
+    position: absolute;
+    right: var(--mg-close);
+    top: var(--mg-close);
+    border:none;
+    background-color:var(--bg-secundary-color);
+
+    transition: transform .1s;
+
+}
+
+.card.modal img:hover {
+    transform: scale(1.5);
+    cursor: pointer;
+    
+}
+
+.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0px);
+}
+
+.close {
+    opacity: 1;
+    transform: translateY(-40px);
+    transition: transform .6s;
+    
+}
+
+@media (min-width: 450px) {
+    :root {
+        --pd-card: 4.8rem 6.4rem 6.4rem;
+    }
+}
